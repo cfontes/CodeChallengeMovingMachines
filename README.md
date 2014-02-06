@@ -1,4 +1,6 @@
-CodeChallengeMovingMachines
-===========================
+Code Challenge Moving Machines
+==============================
 
-Moving machines Code Challenge
+Code for a nice code challenge
+
+;
