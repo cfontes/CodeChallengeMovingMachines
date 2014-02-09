@@ -1,6 +1,7 @@
-analyseLocally=false
+analyseLocally=true
 eclipse.preferences.version=1
 extraProperties=
+lastAnalysisDate=1391679734688
 projectKey=CodeChallengeMovingMachines\:CodeChallengeMovingMachines
 serverUrl=http\://sonar.cflex.com.br
 version=2

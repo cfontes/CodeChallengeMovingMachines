@@ -3,8 +3,11 @@ package com.movingmachines;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 
-import com.movingmachines.core.Engine;
+import com.movingmachines.core.GridEngine;
+import com.movingmachines.entities.Direction;
+import com.movingmachines.entities.Machine;
 
 public class AppRunner {
 
@@ -16,32 +19,35 @@ public class AppRunner {
 	 */
 	public static void main(String[] args) {
 		BufferedReader bufferReader = null;
-		Engine engine;
-		String[] commands;
+		GridEngine gridEngine = null;
 
 		try {
  
 			String line;
  
 			bufferReader = new BufferedReader(new FileReader("input.txt"));
+			Machine machine = null;
 
 			while ((line = bufferReader.readLine()) != null) {
-				commands = line.split("\\s");
-
-				for (String command : commands) {
-					System.out.println(command);
+				String[] commands = line.split("\\s");
+				if (gridEngine == null) {
+					gridEngine = new GridEngine(Integer.parseInt(commands[0]), Integer.parseInt(commands[1]));
+				} else if (commands.length > 1) {
+					machine = gridEngine.addMachine(Integer.parseInt(commands[0]), Integer.parseInt(commands[1]),
+							Direction.toDirection(commands[2]));
+				} else if (machine != null) {
+					machine.execute(commands[0], gridEngine);
 				}
-				System.out.println();
 			}
-
-			if (engine == null) {
-				engine = new Engine(Integer.parseInt(commands[0]), Integer.parseInt(commands[1]));
-			} else {
-				engine.addMachine(x, y);
-			}
+			gridEngine.generateOutputFile();
  
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Error writing to file " + e.getMessage());
+			//TODO - expand error handling
+		} catch (NumberFormatException | ParseException e) {
+			System.out.println("Error reading commands " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error " + e.getMessage());
 		} finally {
 			try {
 				if (bufferReader != null)
