@@ -1,6 +1,5 @@
-Code Challenge Moving Machines
+Code Challenge - Moving Machines
 ==============================
 
-Code for a nice code challenge
+Implementation in Java of a code challenge.
 
-;
