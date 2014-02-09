@@ -14,12 +14,24 @@ import com.movingmachines.entities.exceptions.positionNotAvaliableException;
  */
 public class Machine {
 
+	//This is ID is only used to output the sysout map with the machine ids on it.
 	private static int counter = 1;
 	private int id;
+
 	private int xPosition;
 	private int yPosition;
 	private Direction direction;
 
+	/**
+	 * Instantiate the machine
+	 * 
+	 * @param x
+	 *            X position that the machine starts in
+	 * @param y
+	 *            Y position that the machine starts in
+	 * @param direction
+	 *            direction that it's pointing at
+	 */
 	public Machine(int x, int y, Direction direction) {
 		this.id = counter++;
 		this.xPosition = x;

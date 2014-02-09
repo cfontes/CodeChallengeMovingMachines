@@ -9,9 +9,15 @@ import com.movingmachines.core.GridEngine;
 import com.movingmachines.entities.Direction;
 import com.movingmachines.entities.Machine;
 
+/**
+ * Main application file
+ * 
+ * @author Cristiano
+ * 
+ */
 public class AppRunner {
-
 	/**
+	 * 
 	 * Start the application and fetch the command file.
 	 * 
 	 * @param args

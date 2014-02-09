@@ -7,6 +7,12 @@ import org.jbehave.core.junit.JUnitStory;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 
+/**
+ * Configuring JBehave to find the stories
+ * 
+ * @author Cristiano
+ * 
+ */
 public abstract class MovingMachinesBDDSetup extends JUnitStory {
 
 	public MovingMachinesBDDSetup() {

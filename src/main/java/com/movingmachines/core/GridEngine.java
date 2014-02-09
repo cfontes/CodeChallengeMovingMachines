@@ -24,6 +24,12 @@ public class GridEngine {
 	private Object[][] grid;
 	private List<Machine> machines;
 
+	/**
+	 * Initializes the class creating a grid
+	 * 
+	 * @param cols
+	 * @param rows
+	 */
 	public GridEngine(int cols, int rows) {
 		this.cols = cols;
 		this.rows = rows;
@@ -43,6 +49,7 @@ public class GridEngine {
 	 *            diretion the machine is pointing at
 	 * @return a {@link Machine}
 	 * @throws Exception
+	 *             in case there is an error on the adition of the machine.
 	 * @author Cristiano
 	 */
 	public Machine addMachine(int x, int y, Direction direction) throws Exception {
@@ -58,6 +65,12 @@ public class GridEngine {
 		throw new Exception("Cannot create a machine outside of the grid.");
 	}
 
+	/**
+	 * Removes the machine from the grid
+	 * 
+	 * @param machine
+	 * @author Cristiano
+	 */
 	public void removeMachine(Machine machine) {
 		this.grid[machine.getxPosition()][machine.getyPosition()] = null;
 	}
@@ -73,7 +86,7 @@ public class GridEngine {
 		if (machine.getxPosition() < 0 || machine.getxPosition() > this.getCols() || machine.getyPosition() < 0
 				|| machine.getyPosition() > this.getRows()) {
 			// Moving out of the grid?
-			throw new positionNotAvaliableException("This position is out of the grid.");
+			throw new positionNotAvaliableException("Elvis has left the building - This position is out of the grid.");
 		} else if (this.grid[machine.getxPosition()][machine.getyPosition()] != null) {
 			// Moving on an occupied position?
 			throw new positionNotAvaliableException("This position is occupied.");
@@ -105,10 +118,11 @@ public class GridEngine {
 	}
 
 	/**
-	 * Creates
+	 * Create a file with the result of all movements of all machines.
 	 * 
 	 * @author Cristiano
 	 * @throws IOException
+	 *             in case there is some issue with the file handling.
 	 */
 	public void generateOutputFile() throws IOException {
 		System.out.println("Creating Output File");
