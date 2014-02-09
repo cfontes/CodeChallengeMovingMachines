@@ -52,11 +52,12 @@ public class GridEngine {
 			this.grid[machine.getxPosition()][machine.getyPosition()] = machine;
 			System.out.println("Creating Machine " + machines.size() + " At " + x + " " + y + " Heading "
 					+ direction.toString());
+			this.printGrid();
 			return machine;
 		}
 		throw new Exception("Cannot create a machine outside of the grid.");
 	}
-	
+
 	public void removeMachine(Machine machine) {
 		this.grid[machine.getxPosition()][machine.getyPosition()] = null;
 	}
@@ -69,18 +70,38 @@ public class GridEngine {
 	 * @author Cristiano
 	 */
 	public void set(Machine machine) throws positionNotAvaliableException {
-
 		if (machine.getxPosition() < 0 || machine.getxPosition() > this.getCols() || machine.getyPosition() < 0
 				|| machine.getyPosition() > this.getRows()) {
 			// Moving out of the grid?
-			throw new positionNotAvaliableException("It's not possible to move to that position.");
+			throw new positionNotAvaliableException("This position is out of the grid.");
 		} else if (this.grid[machine.getxPosition()][machine.getyPosition()] != null) {
 			// Moving on an occupied position?
-			throw new positionNotAvaliableException("It's not possible to move to that position.");
+			throw new positionNotAvaliableException("This position is occupied.");
 		}
-
 		this.grid[machine.getxPosition()][machine.getyPosition()] = machine;
+		this.printGrid();
 
+	}
+
+	/**
+	 * Prints a grid with the current state.
+	 * 
+	 * @author Cristiano
+	 */
+	public void printGrid() {
+		for (int y = this.cols - 1; y >= 0; y--) {
+			for (int x = 0; x < this.rows; x++) {
+				Object obj = this.grid[x][y];
+				if (obj == null) {
+					System.out.print("|-------|");
+				} else if (obj instanceof Machine) {
+					Machine machine = (Machine) obj;
+					System.out.print("|---" + machine.getId() + "---|");
+				}
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 
 	/**

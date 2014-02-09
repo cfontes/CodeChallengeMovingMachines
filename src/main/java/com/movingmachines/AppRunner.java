@@ -42,12 +42,12 @@ public class AppRunner {
 			gridEngine.generateOutputFile();
  
 		} catch (IOException e) {
-			System.out.println("Error writing to file " + e.getMessage());
+			System.out.println("Error writing to file - " + e.getMessage());
 			//TODO - expand error handling
 		} catch (NumberFormatException | ParseException e) {
-			System.out.println("Error reading commands " + e.getMessage());
+			System.out.println("Error reading commands - " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Error " + e.getMessage());
+			System.out.println("Error - " + e.getMessage());
 		} finally {
 			try {
 				if (bufferReader != null)

@@ -14,11 +14,14 @@ import com.movingmachines.entities.exceptions.positionNotAvaliableException;
  */
 public class Machine {
 
+	private static int counter = 1;
+	private int id;
 	private int xPosition;
 	private int yPosition;
 	private Direction direction;
 
 	public Machine(int x, int y, Direction direction) {
+		this.id = counter++;
 		this.xPosition = x;
 		this.yPosition = y;
 		this.direction = direction;
@@ -67,10 +70,10 @@ public class Machine {
 	 * @author Cristiano
 	 */
 	public void move() {
-		System.out.println("Current position is now " + this.xPosition + ", " + this.yPosition);
+		System.out.println("Current position is now " + this.xPosition + ", " + this.yPosition + " " + this.direction);
 		this.setxPosition(this.getxPosition() + this.getDirection().getXCorrection());
 		this.setyPosition(this.getyPosition() + this.getDirection().getYCorrection());
-		System.out.println("Current position is now " + this.xPosition + ", " + this.yPosition);
+		System.out.println("Current position is now " + this.xPosition + ", " + this.yPosition + " " + this.direction);
 	}
 
 	/**
@@ -137,6 +140,10 @@ public class Machine {
 
 	public void setxPosition(int xPosition) {
 		this.xPosition = xPosition;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }
