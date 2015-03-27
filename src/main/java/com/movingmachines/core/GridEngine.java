@@ -82,8 +82,9 @@ public class GridEngine {
 	 * @throws positionNotAvaliableException
 	 * @author Cristiano
 	 */
-	public synchronized void set(Machine machine) throws positionNotAvaliableException {
-		if (machine.getxPosition() < 0 || machine.getxPosition() > this.getCols() || machine.getyPosition() < 0
+	public void set(Machine machine) throws positionNotAvaliableException {
+//        this.removeMachine(machine);
+        if (machine.getxPosition() < 0 || machine.getxPosition() > this.getCols() || machine.getyPosition() < 0
 				|| machine.getyPosition() > this.getRows()) {
 			// Moving out of the grid?
 			throw new positionNotAvaliableException("Elvis has left the building - This position is out of the grid.");

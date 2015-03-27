@@ -162,10 +162,12 @@ public class Machine implements Runnable{
 //                        System.out.println("Machine "+this.getId()+" Turning Right. Direction now is " + this.direction);
                         break;
                     case 'M':
-                        this.grid.removeMachine(this);
-//                        System.out.println("Machine "+this.getId()+" Moving");
-                        this.move();
-                        this.grid.set(this);
+                        synchronized (this) {
+                            this.grid.removeMachine(this);
+                            //                        System.out.println("Machine "+this.getId()+" Moving");
+                            this.move();
+                            this.grid.set(this);
+                        }
                         break;
                     default:
                         System.out.println("Error reading commands - Error parsing command " + command + " to machine " + this.getId() + " is not a valid command");
