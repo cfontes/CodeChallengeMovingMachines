@@ -12,18 +12,17 @@ import com.movingmachines.entities.Machine;
 
 /**
  * Main application file
- * 
+ *
  * @author Cristiano
- * 
  */
 public class AppRunner {
-	/**
-	 * 
-	 * Start the application and fetch the command file.
-	 * 
-	 * @param args
-	 * @author Cristiano
-	 */
+    /**
+     *
+     * Start the application and fetch the command file.
+     *
+     * @param args the input arguments
+     * @author Cristiano
+     */
 	public static void main(String[] args) {
 		BufferedReader bufferReader = null;
 		GridEngine gridEngine = null;
@@ -60,12 +59,34 @@ public class AppRunner {
 				ex.printStackTrace();
 			}
 		}
+
+        List<Thread> threads = new ArrayList<>();
         for (Machine machine : machines) {
-            new Thread(machine).start();
+                Thread thread = new Thread(machine);
+                thread.start();
+                threads.add(thread);
         }
-//        if (gridEngine != null) {
-//            gridEngine.generateOutputFile();
-//        }
+
+        createOutputFile(gridEngine, threads);
+    }
+
+    /**
+     * Waits for all threads to finish before creating the answer file
+     * @param gridEngine grid
+     * @param threads list of machine threads
+     */
+    private static void createOutputFile(GridEngine gridEngine, List<Thread> threads) {
+        try {
+            for (Thread thread : threads) {
+                thread.join();
+            }
+
+            if (gridEngine != null) {
+                gridEngine.generateOutputFile();
+            }
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -82,7 +82,7 @@ public class GridEngine {
 	 * @throws positionNotAvaliableException
 	 * @author Cristiano
 	 */
-	public void set(Machine machine) throws positionNotAvaliableException {
+	public synchronized void set(Machine machine) throws positionNotAvaliableException {
 //        this.removeMachine(machine);
         if (machine.getxPosition() < 0 || machine.getxPosition() > this.getCols() || machine.getyPosition() < 0
 				|| machine.getyPosition() > this.getRows()) {
