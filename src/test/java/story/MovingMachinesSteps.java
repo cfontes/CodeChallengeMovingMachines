@@ -39,7 +39,7 @@ public class MovingMachinesSteps extends MovingMachinesBDDSetup {
 
 	@When("the machine receives the command $command")
 	public void interpretCommand(String command) throws ParseException, positionNotAvaliableException {
-		machine.execute(command, engine);
+		machine.recordMovements(command, engine);
 	}
 
 	@Then("it will move to square $x , $y pointing to $direction")

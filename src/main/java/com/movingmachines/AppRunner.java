@@ -3,7 +3,8 @@ package com.movingmachines;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.movingmachines.core.GridEngine;
 import com.movingmachines.entities.Direction;
@@ -26,6 +27,7 @@ public class AppRunner {
 	public static void main(String[] args) {
 		BufferedReader bufferReader = null;
 		GridEngine gridEngine = null;
+        List<Machine> machines = new ArrayList<>();
 
 		try {
  
@@ -41,17 +43,13 @@ public class AppRunner {
 				} else if (commands.length > 1) {
 					machine = gridEngine.addMachine(Integer.parseInt(commands[0]), Integer.parseInt(commands[1]),
 							Direction.toDirection(commands[2]));
+                    machines.add(machine);
 				} else if (machine != null) {
-					machine.execute(commands[0], gridEngine);
+                    machine.recordMovements(commands[0], gridEngine);
 				}
 			}
-			gridEngine.generateOutputFile();
- 
-		} catch (IOException e) {
+        } catch (IOException e) {
 			System.out.println("Error writing to file - " + e.getMessage());
-			//TODO - expand error handling
-		} catch (NumberFormatException | ParseException e) {
-			System.out.println("Error reading commands - " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Error - " + e.getMessage());
 		} finally {
@@ -62,6 +60,12 @@ public class AppRunner {
 				ex.printStackTrace();
 			}
 		}
-	}
+        for (Machine machine : machines) {
+            new Thread(machine).start();
+        }
+//        if (gridEngine != null) {
+//            gridEngine.generateOutputFile();
+//        }
+    }
 
 }

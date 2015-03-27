@@ -68,7 +68,7 @@ public class GridEngine {
 	/**
 	 * Removes the machine from the grid
 	 * 
-	 * @param machine
+	 * @param machine machine to work on
 	 * @author Cristiano
 	 */
 	public void removeMachine(Machine machine) {
@@ -78,11 +78,11 @@ public class GridEngine {
 	/**
 	 * Set the position of a machine and validates it.
 	 * 
-	 * @param machine
+	 * @param machine machine to work on
 	 * @throws positionNotAvaliableException
 	 * @author Cristiano
 	 */
-	public void set(Machine machine) throws positionNotAvaliableException {
+	public synchronized void set(Machine machine) throws positionNotAvaliableException {
 		if (machine.getxPosition() < 0 || machine.getxPosition() > this.getCols() || machine.getyPosition() < 0
 				|| machine.getyPosition() > this.getRows()) {
 			// Moving out of the grid?
@@ -93,7 +93,6 @@ public class GridEngine {
 		}
 		this.grid[machine.getxPosition()][machine.getyPosition()] = machine;
 		this.printGrid();
-
 	}
 
 	/**
