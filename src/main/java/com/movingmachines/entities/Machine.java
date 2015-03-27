@@ -71,7 +71,7 @@ public class Machine implements Runnable{
      *
      * @author Cristiano
      */
-    public synchronized void move() {
+    public void move() {
 //        System.out.println("Current position is now " + this.xPosition + ", " + this.yPosition + " " + this.direction);
         this.setxPosition(this.getxPosition() + this.getDirection().getXCorrection());
 		this.setyPosition(this.getyPosition() + this.getDirection().getYCorrection());
@@ -164,7 +164,7 @@ public class Machine implements Runnable{
                     case 'M':
                         synchronized (this) {
                             this.grid.removeMachine(this);
-                            //                        System.out.println("Machine "+this.getId()+" Moving");
+//                            System.out.println("Machine "+this.getId()+" Moving");
                             this.move();
                             this.grid.set(this);
                         }
