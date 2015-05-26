@@ -1,6 +1,8 @@
 Code Challenge - Moving Machines
 ==============================
 
+[![Build Status](https://travis-ci.org/cfontes/CodeChallengeMovingMachines.svg)](https://travis-ci.org/cfontes/CodeChallengeMovingMachines)
+
 Implementation in Java of a code challenge, where the objective was to make "machines" receive commands from a file and
 move on a map using them.
 
