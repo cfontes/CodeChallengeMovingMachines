@@ -23,31 +23,30 @@ import com.movingmachines.entities.exceptions.positionNotAvaliableException;
  */
 public class MovingMachinesSteps extends MovingMachinesBDDSetup {
 
-	private GridEngine engine;
-	private Machine machine;
+    private GridEngine engine;
+    private Machine machine;
 
-	@Given("there is a grid of the size $x and $y")
-	@Alias("one")
-	public void thereIsAGrid(int x, int y){
-		this.engine = new GridEngine(x, y);
-	}
+    @Given("there is a grid of the size $x and $y")
+    public void thereIsAGrid(int x, int y) {
+        this.engine = new GridEngine(x, y);
+    }
 
-	@Given("there is a machine on square $x , $y , pointing at $direction")
-	public void theMachineIsOn(int x, int y, String direction) throws Exception {
-		machine = this.engine.addMachine(x, y, Direction.toDirection(direction));
-	}
+    @Given("there is a machine on square $x , $y , pointing at $direction")
+    public void theMachineIsOn(int x, int y, String direction) throws Exception {
+        machine = this.engine.addMachine(x, y, Direction.toDirection(direction));
+    }
 
-	@When("the machine receives the command $command")
+    @When("the machine receives the command $command")
 	public void interpretCommand(String command) throws ParseException, positionNotAvaliableException {
 		machine.recordMovements(command, engine);
+		machine.run();
 	}
 
-	@Then("it will move to square $x , $y pointing to $direction")
-	public void moveTheMachineTo(int x, int y, String direction) throws ParseException {
-		assertEquals("X value is not the expected one.", machine.getxPosition(), x);
-		assertEquals("Y value is not the expected one.", machine.getyPosition(), y);
-		assertEquals("Direction value is not the expected one.", machine.getDirection(),
-				Direction.toDirection(direction));
-	}
-	
+    @Then("it will move to square $x , $y pointing to $direction")
+    public void moveTheMachineTo(int x, int y, String direction) throws ParseException {
+        assertEquals("X value is not the expected one.", machine.getxPosition(), x);
+        assertEquals("Y value is not the expected one.", machine.getyPosition(), y);
+        assertEquals("Direction value is not the expected one.", machine.getDirection(), Direction.toDirection(direction));
+    }
+
 }
