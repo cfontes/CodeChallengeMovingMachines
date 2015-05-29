@@ -1,5 +1,7 @@
 package story;
 
+import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
+
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.failures.PassingUponPendingStep;
@@ -17,6 +19,7 @@ import org.junit.runner.RunWith;
  * @author Cristiano
  * 
  */
+@RunWith(JUnitReportingRunner.class)
 public abstract class MovingMachinesBDDSetup extends JUnitStory {
 
 	@Override

@@ -1,9 +1,7 @@
 Code Challenge - Moving Machines
 ==============================
 
-[![Build Status](https://travis-ci.org/cfontes/CodeChallengeMovingMachines.svg)](https://travis-ci.org/cfontes/CodeChallengeMovingMachines)
-
-[![Requirements Status](https://requires.io/github/cfontes/CodeChallengeMovingMachines/requirements.svg?branch=master)](https://requires.io/github/cfontes/CodeChallengeMovingMachines/requirements/?branch=master)
+[![Build Status](https://travis-ci.org/cfontes/CodeChallengeMovingMachines.svg)](https://travis-ci.org/cfontes/CodeChallengeMovingMachines) [![Requirements Status](https://requires.io/github/cfontes/CodeChallengeMovingMachines/requirements.svg?branch=master)](https://requires.io/github/cfontes/CodeChallengeMovingMachines/requirements/?branch=master) [![Coverage Status](https://coveralls.io/repos/cfontes/CodeChallengeMovingMachines/badge.svg)](https://coveralls.io/r/cfontes/CodeChallengeMovingMachines)
 
 Implementation in Java of a code challenge, where the objective was to make "machines" receive commands from a file and
 move on a map using them.
@@ -33,7 +31,7 @@ The possible commands are:
 * M (move forward).
 
 
-The results of those test cases should be
+The results of those test cases should be:
 
-3 3 N
-0 1 S
+    3 3 N
+    0 1 S
